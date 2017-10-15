@@ -11,6 +11,10 @@ import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *  @author wangyingjie1
+ *  @date 2017-09-01
+ */
 @Repository("genericBaseDAO")
 public class GenericBaseDaoImpl implements GenericBaseDAO {
 
@@ -22,6 +26,7 @@ public class GenericBaseDaoImpl implements GenericBaseDAO {
      */
     private static final Logger log = LoggerFactory.getLogger(GenericBaseDaoImpl.class);
 
+    @Override
     public <E> E executeForObject(String sqlID, Object bindParams, Class<E> clazz) {
 
         if (log.isDebugEnabled()) {
@@ -55,6 +60,7 @@ public class GenericBaseDaoImpl implements GenericBaseDAO {
      * @see com.mooing.base.meerkat.dao.QueryDAO#executeForMap(java.lang.String,
      * java.lang.Object)
      */
+    @Override
     public Map<String, Object> executeForMap(String sqlID, Object bindParams) {
 
         if (log.isDebugEnabled()) {
@@ -78,6 +84,7 @@ public class GenericBaseDaoImpl implements GenericBaseDAO {
      * com.mooing.base.meerkat.dao.QueryDAO#executeForObjectArray(java.lang.String
      * , java.lang.Object, java.lang.Class)
      */
+    @Override
     @SuppressWarnings("unchecked")
     public <E> E[] executeForObjectArray(String sqlID, Object bindParams, Class<E> clazz) {
 
@@ -113,6 +120,7 @@ public class GenericBaseDaoImpl implements GenericBaseDAO {
      * com.mooing.base.meerkat.dao.QueryDAO#executeForMapArray(java.lang.String,
      * java.lang.Object)
      */
+    @Override
     public Map<String, Object>[] executeForMapArray(String sqlID, Object bindParams) {
 
         if (log.isDebugEnabled()) {
@@ -136,6 +144,7 @@ public class GenericBaseDaoImpl implements GenericBaseDAO {
      * com.mooing.base.meerkat.dao.QueryDAO#executeForObjectArray(java.lang.String
      * , java.lang.Object, java.lang.Class, int, int)
      */
+    @Override
     @SuppressWarnings("unchecked")
     public <E> E[] executeForObjectArray(String sqlID, Object bindParams, Class<E> clazz, int beginIndex, int maxCount) {
 
@@ -172,6 +181,7 @@ public class GenericBaseDaoImpl implements GenericBaseDAO {
      * com.mooing.base.meerkat.dao.QueryDAO#executeForMapArray(java.lang.String,
      * java.lang.Object, int, int)
      */
+    @Override
     public Map<String, Object>[] executeForMapArray(String sqlID, Object bindParams, int beginIndex, int maxCount) {
 
         if (log.isDebugEnabled()) {
@@ -195,6 +205,7 @@ public class GenericBaseDaoImpl implements GenericBaseDAO {
      * com.mooing.base.meerkat.dao.QueryDAO#executeForObjectList(java.lang.String
      * , java.lang.Object)
      */
+    @Override
     @SuppressWarnings("unchecked")
     public <E> List<E> executeForObjectList(String sqlID, Object bindParams) {
 
@@ -219,6 +230,7 @@ public class GenericBaseDaoImpl implements GenericBaseDAO {
      * com.mooing.base.meerkat.dao.QueryDAO#executeForMapList(java.lang.String,
      * java.lang.Object)
      */
+    @Override
     public List<Map<String, Object>> executeForMapList(String sqlID, Object bindParams) {
 
         if (log.isDebugEnabled()) {
@@ -236,6 +248,7 @@ public class GenericBaseDaoImpl implements GenericBaseDAO {
 
 
 
+    @Override
     public int execute(String sqlID, Object bindParams) {
 
         if (log.isDebugEnabled()) {

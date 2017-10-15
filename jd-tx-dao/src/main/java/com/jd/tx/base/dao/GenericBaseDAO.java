@@ -3,6 +3,10 @@ package com.jd.tx.base.dao;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author wangyingjie1
+ * @date 2017-09-01
+ */
 public interface GenericBaseDAO {
 
     /**
