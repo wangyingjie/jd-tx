@@ -5,8 +5,13 @@ import org.junit.Test;
 public class DbOperationByJdbcTest {
 
     @Test
-    public void testSelect() {
+    public void testSelectData() {
         DbOperationByJdbc.selectData();
+    }
+
+    @Test
+    public void testInsetData() {
+        DbOperationByJdbc.insertData();
     }
 
 }

@@ -1,5 +1,7 @@
 package com.jd.jdbc.v2;
 
+import org.springframework.transaction.support.TransactionSynchronizationManager;
+
 import java.sql.*;
 
 /**
@@ -58,6 +60,23 @@ public class DbHelperByJdbc {
             return connection;
         }
     }
+
+    public static void getConnection3() {
+        Connection connection = null;
+        try {
+            // 1、加载数据库驱动（ 成功加载后，会将Driver类的实例注册到DriverManager类中）
+            //Class.forName(driver);
+
+            // 2、获取数据库连接
+            connection = DriverManager.getConnection(url, username, password);
+
+            TransactionSynchronizationManager.bindResource("xxx", connection);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void close(Connection conn, Statement stmt, ResultSet rs) {
         // 7、关闭对象，回收数据库资源
