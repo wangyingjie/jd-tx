@@ -4,6 +4,7 @@ package com.jd.ds.spring;
 import com.jd.common.DBConstants;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -16,6 +17,16 @@ import java.sql.SQLException;
  */
 public class SpringManagerDataSource {
 
+    public static DataSource getDataSource() {
+        DriverManagerDataSource ds = new DriverManagerDataSource();
+        ds.setDriverClassName(DBConstants.DRIVER);
+        ds.setUrl(DBConstants.URL);
+
+        ds.setUsername(DBConstants.USERNAME);
+        ds.setPassword(DBConstants.PASSWORD);
+
+        return ds;
+    }
 
     public Connection getConnection() throws SQLException {
         DriverManagerDataSource ds = new DriverManagerDataSource();

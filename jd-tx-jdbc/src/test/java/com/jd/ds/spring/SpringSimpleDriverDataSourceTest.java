@@ -20,15 +20,15 @@ public class SpringSimpleDriverDataSourceTest {
         Statement stmt = null;
         ResultSet rs = null;
         try {
-            // 2、获取数据库连接
+            // 1、获取数据库连接
             conn =  ds.getConnection();;
-            // 3、获取数据库操作对象
+            // 2、获取数据库操作对象
             stmt = conn.createStatement();
-            // 4、定义操作的SQL语句
+            // 3、定义操作的SQL语句
             String sql = "select * from tx where id > 0";
-            // 5、执行数据库操作
+            // 4、执行数据库操作
             rs = stmt.executeQuery(sql);
-            // 6、获取并操作结果集
+            // 5、获取并操作结果集
             while (rs.next()) {
                 System.out.println(rs.getInt("id") + "======" + rs.getString("num"));
             }
@@ -36,6 +36,7 @@ public class SpringSimpleDriverDataSourceTest {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            // 6、释放资源
             JdbcUtils.closeResultSet(rs);
             JdbcUtils.closeStatement(stmt);
             JdbcUtils.closeConnection(conn);
