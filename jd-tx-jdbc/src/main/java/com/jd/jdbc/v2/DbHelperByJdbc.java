@@ -1,5 +1,6 @@
 package com.jd.jdbc.v2;
 
+import com.jd.common.DBConstants;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.sql.*;
@@ -10,33 +11,16 @@ import java.sql.*;
  */
 public class DbHelperByJdbc {
 
-    /**
-     * 数据库驱动类名的字符串
-     */
-    private static String driver = "com.mysql.jdbc.Driver";
+    public static final String CONNECTION = "conn";
 
-    /**
-     * 数据库连接串
-     */
-    private static String url = "jdbc:mysql://127.0.0.1:3306/test";
-
-    /**
-     * 用户名
-     */
-    private static String username = "root";
-
-    /**
-     * 密码
-     */
-    private static String password = "111111";
 
     public static Connection getConnection() {
         Connection connection = null;
         try {
             // 1、加载数据库驱动（ 成功加载后，会将Driver类的实例注册到DriverManager类中）
-            Class.forName(driver);
+            Class.forName(DBConstants.DRIVER);
             // 2、获取数据库连接
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(DBConstants.URL, DBConstants.USERNAME, DBConstants.PASSWORD);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -50,10 +34,10 @@ public class DbHelperByJdbc {
         Connection connection = null;
         try {
             // 1、加载数据库驱动（ 成功加载后，会将Driver类的实例注册到DriverManager类中）
-            //Class.forName(driver);
+            //Class.forName(DRIVER);
 
             // 2、获取数据库连接
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(DBConstants.URL, DBConstants.USERNAME, DBConstants.PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -65,13 +49,15 @@ public class DbHelperByJdbc {
         Connection connection = null;
         try {
             // 1、加载数据库驱动（ 成功加载后，会将Driver类的实例注册到DriverManager类中）
-            //Class.forName(driver);
+            Class.forName(DBConstants.DRIVER);
 
             // 2、获取数据库连接
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(DBConstants.URL, DBConstants.USERNAME, DBConstants.PASSWORD);
 
-            TransactionSynchronizationManager.bindResource("xxx", connection);
+            TransactionSynchronizationManager.bindResource(CONNECTION, connection);
 
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }

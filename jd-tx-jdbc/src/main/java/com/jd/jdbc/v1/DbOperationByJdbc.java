@@ -1,32 +1,15 @@
 package com.jd.jdbc.v1;
 
+import com.jd.common.DBConstants;
+
 import java.sql.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author wangyingjie1
  * @Date 2017/10/15 22:16
  */
 public class DbOperationByJdbc {
-
-    /**
-     * 数据库驱动类名的字符串
-     */
-    private static String driver = "com.mysql.jdbc.Driver";
-
-    /**
-     * 数据库连接串
-     */
-    private static String url = "jdbc:mysql://127.0.0.1:3306/test";
-
-    /**
-     * 用户名
-     */
-    private static String username = "root";
-
-    /**
-     * 密码
-     */
-    private static String password = "111111";
 
     /**
      * 使用JDBC连接并操作mysql数据库
@@ -38,9 +21,9 @@ public class DbOperationByJdbc {
         ResultSet rs = null;
         try {
             // 1、加载数据库驱动（ 成功加载后，会将Driver类的实例注册到DriverManager类中）
-            Class.forName(driver);
+            Class.forName(DBConstants.DRIVER);
             // 2、获取数据库连接
-            conn = DriverManager.getConnection(url, username, password);
+            conn = DriverManager.getConnection(DBConstants.URL, DBConstants.USERNAME, DBConstants.PASSWORD);
             // 3、获取数据库操作对象
             stmt = conn.createStatement();
             // 4、定义操作的SQL语句
@@ -94,18 +77,19 @@ public class DbOperationByJdbc {
         ResultSet rs = null;
         try {
             // 1、加载数据库驱动（ 成功加载后，会将Driver类的实例注册到DriverManager类中）
-            Class.forName(driver);
+            Class.forName(DBConstants.DRIVER);
 
             // 2、获取数据库连接
-            conn = DriverManager.getConnection(url, username, password);
+            conn = DriverManager.getConnection(DBConstants.URL, DBConstants.USERNAME, DBConstants.PASSWORD);
+
             System.out.println("conn.getAutoCommit=============>" + conn.getAutoCommit());
-            conn.setAutoCommit(false);
+            // conn.setAutoCommit(false);
 
             // 3、获取数据库操作对象
             stmt = conn.createStatement();
 
             // 4、定义操作的SQL语句
-            String sql = "INSERT INTO tx  VALUES (7, 7)";
+            String sql = "INSERT INTO tx  VALUES (" + ThreadLocalRandom.current().nextInt(10, 10000000) + ", 7)";
 
             // 5、执行数据库操作
             int count = stmt.executeUpdate(sql);
