@@ -1,0 +1,13 @@
+<rules>
+    <!--表达式如果不使用自定义路由规则函数,而是直接使用   erpOrderId%2==0这种的话就不用在文件中配置<property name="functionsMap">中了-->
+    <rule>
+        <namespace>com.jd.svc.dao.mapper.SvcBookingOrderMapper</namespace>
+        <shardingExpression>hash.shardingDB(erpOrderId) == 0</shardingExpression>
+        <shards>master_0</shards>
+    </rule>
+    <rule>
+        <namespace>com.jd.svc.dao.mapper.SvcBookingOrderMapper</namespace>
+        <shardingExpression>hash.shardingDB(erpOrderId) == 1</shardingExpression>
+        <shards>master_1</shards>
+    </rule>
+</rules>
