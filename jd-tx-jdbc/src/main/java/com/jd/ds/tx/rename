@@ -1,0 +1,7 @@
+
+1、spring 事物调用模版方法： org.springframework.transaction.support.TransactionTemplate#execute
+
+2、Spring Aop 事物代理处理类 org.springframework.transaction.interceptor.TransactionInterceptor
+   根据类图关系最终会调用到： org.springframework.transaction.interceptor.TransactionAspectSupport#invokeWithinTransaction
+   方法完成事物织入
+
